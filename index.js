@@ -9,7 +9,7 @@ const interScrape = require('./Scraper/interScrape')
 
 
 //connect to mongoDB
-mongoose.connect('mongodb://localhost/news',
+mongoose.connect('mongodb+srv://alhaji_b:alhaji@1999@@sabisalonenews.vzeuw.gcp.mongodb.net/news?retryWrites=true&w=majority',
   { useNewUrlParser: true,
     useUnifiedTopology: true
   })
