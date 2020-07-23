@@ -31,7 +31,7 @@ const doScraping = async () =>{
 }
 
 //setting interval for scraping
-setInterval(await doScraping().then(() => console.log("Scraping Done") ).catch(err => {console.log('There was an error', err)}), 1800000)
+setInterval(await doScraping().then(() => console.log("Scraping Done") ).catch(err => {console.log(`There was an error, ${err}`)}), 1800000)
 
 //routes
 const apiRoutes = require('./routes/api.routes');
