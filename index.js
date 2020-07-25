@@ -32,7 +32,7 @@ const doScraping = async () =>{
 
 //setting interval for scraping
 setInterval(async () => {
-  await doScraping()
+   doScraping()
         .then(() => {console.log("Scraping Done")} )
         .catch(err => {console.log(`There was an error ${err}`)})
 }, 1800000)
