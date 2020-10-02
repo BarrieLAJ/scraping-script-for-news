@@ -12,7 +12,7 @@ const interScrape = require('./Scraper/interScrape')
 mongoose.connect('mongodb+srv://alhaji_b:alhaji@1999@@sabisalonenews.vzeuw.gcp.mongodb.net/news?retryWrites=true&w=majority',
   { useNewUrlParser: true,
     useUnifiedTopology: true
-  })
+  }).then(res=> console.log("DB Connected successfully"))
 
 
 // scrapering
