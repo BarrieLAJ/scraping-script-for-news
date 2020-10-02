@@ -31,11 +31,11 @@ const doScraping = async () =>{
 }
 
 //setting interval for scraping
-// setInterval(async () => {
-//    doScraping()
-//         .then(() => {console.log("Scraping Done")} )
-//         .catch(err => {console.log(`There was an error ${err}`)})
-// }, 1800000)
+setInterval(async () => {
+   doScraping()
+        .then(() => {console.log("Scraping Done")} )
+        .catch(err => {console.log(`There was an error ${err}`)})
+}, 1800000)
 
 //routes
 const indexRoute = require('./routes/indexRout.routes')
