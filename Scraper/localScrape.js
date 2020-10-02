@@ -8,7 +8,7 @@ let previousNews;
 
 //localnews scraping
 const localScrape = async () => {
-    const browser = await puppetter.launch();
+    const browser = await puppetter.launch({headless:true,args:['--no-sandbox']});
     const page = await browser.newPage();
     const url = 'https://www.thesierraleonetelegraph.com/'
     await page.goto('https://www.thesierraleonetelegraph.com/', {timeout: 0, waitUntil: 'networkidle2'});
