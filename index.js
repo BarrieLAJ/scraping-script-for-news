@@ -52,7 +52,9 @@ const PORT = process.env.port || 3000
 app.use(bodyParser.json())
 
 //setting routes
-app.use(indexRoute)
+app.get('/',(req,res) =>{
+  res.json({ok: req.header})
+})
 app.use('/api/news', apiRoutes)
 
 
