@@ -92,7 +92,7 @@ module.exports = interScrape
 // })
 
 
-const checkNews = (previousNew, news) => {
+const checkNews = (previousNews, news) => {
 
     if(news.img && news.link){
         return !previousNews.some(elem => elem.link == news.link)
