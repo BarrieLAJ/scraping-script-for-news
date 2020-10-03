@@ -113,7 +113,7 @@ const localScrape = async () => {
     //console.log(localNews);
     await browser.close();
   } catch (error) {
-      return error
+    return error;
   }
 };
 
