@@ -7,7 +7,7 @@ let previousNews;
 
 //localnews scraping
 const localScrape = async () => {
-    const browser =  puppetter.launch({
+    const browser =  await puppetter.launch({
       headless: true,
       args: ["--no-sandbox"],
     });
