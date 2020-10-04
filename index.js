@@ -16,8 +16,8 @@ mongoose
   .then((res) => console.log("DB Connected successfully"));
 
 // scrapering
-const doScraping = async () => {
-  await localScrape()
+const doScraping =  () => {
+   localScrape()
     .then(() => {
       console.log("Scraping local news Was Successful");
     })
@@ -25,7 +25,7 @@ const doScraping = async () => {
       console.log(`Error Scraping local Site ${err}`);
     });
 
-  await interScrape()
+   interScrape()
     .then(() => {
       console.log("Scraping International news Was Successful");
     })
@@ -35,7 +35,7 @@ const doScraping = async () => {
 };
 
 //setting interval for scraping
-setInterval(async () => {
+setInterval(() => {
   doScraping()
     .then(() => {
       console.log("Scraping Done");
