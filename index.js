@@ -16,7 +16,7 @@ mongoose
   .then((res) => console.log("DB Connected successfully"));
 
 // scrapering
-const doScraping =  () => {
+const doScraping = async () => {
    localScrape()
     .then(() => {
       console.log("Scraping local news Was Successful");
