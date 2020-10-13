@@ -37,15 +37,15 @@ const doScraping = async () => {
 };
 
 //setting interval for scraping
-setInterval(() => {
-  doScraping()
-    .then(() => {
-      console.log("Scraping Done");
-    })
-    .catch((err) => {
-      console.log(`There was an error ${err}`);
-    });
-}, 1000);
+// setInterval(() => {
+//   doScraping()
+//     .then(() => {
+//       console.log("Scraping Done");
+//     })
+//     .catch((err) => {
+//       console.log(`There was an error ${err}`);
+//     });
+// }, 1000);
 
 // 1800000
 
@@ -60,7 +60,15 @@ app.use(bodyParser.json());
 
 //setting routes
 app.get("/", (req, res) => {
-  res.json({ ok: req.header });
+  doScraping()
+    .then(() => {
+      console.log("Scraping Done");
+      res.json({ ok: req.header });
+    })
+    .catch((err) => {
+      console.log(`There was an error ${err}`);
+      res.json({ err: err });
+    });
 });
 app.use("/api/news", apiRoutes);
 
