@@ -23,6 +23,7 @@ const doScraping = async () => {
     })
     .catch((err) => {
       console.log(`Error Scraping local Site ${err}`);
+      return err
     });
 
    interScrape()
@@ -31,6 +32,7 @@ const doScraping = async () => {
     })
     .catch((err) => {
       console.log(`Error Scraping international Site ${err}`);
+      return err
     });
 };
 
