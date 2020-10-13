@@ -3,8 +3,10 @@ const InternationalNews = require("../models/internationalNews");
 const fs = require("fs");
 const path = require("path");
 const interScrape = async () => {
-  const browser = await puppetter.launch({ headless: true, args: ["--no-sandbox",
-  '--disable-setuid-sandbox'] });
+  const browser = await puppetter.launch({ headless: true, 'args' : [
+    '--no-sandbox',
+    '--disable-setuid-sandbox'
+  ] });
   const page = await browser.newPage();
   await page.goto("https://www.bbc.com/news/world", {
     timeout: 0,
