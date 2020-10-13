@@ -53,7 +53,7 @@ const doScraping = async () => {
 const indexRoute = require("./routes/indexRout.routes");
 const apiRoutes = require("./routes/api.routes");
 
-const PORT = process.env.port || 3000;
+const PORT = process.env.PORT || 3000;
 
 //middlewares
 app.use(bodyParser.json());
