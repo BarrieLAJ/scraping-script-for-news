@@ -9,7 +9,8 @@ let previousNews;
 const localScrape = async () => {
     const browser =  await puppetter.launch({
       headless: true,
-      args: ["--no-sandbox"],
+      args: ["--no-sandbox",
+      '--disable-setuid-sandbox'],
     });
     const page = await browser.newPage();
     // const url = 'https://www.thesierraleonetelegraph.com/'
