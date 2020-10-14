@@ -31,7 +31,7 @@ const interScrape = async () => {
        
       
           // img
-          let img =  let img = `${el.querySelector("div.lx-stream-related-story a.qa-story-image-link div img").getAttribute("src")}`
+          let img  = `${el.querySelector("div.lx-stream-related-story a.qa-story-image-link div img").getAttribute("src")}`
           // .replace("{width}", "240")
       
           // content
