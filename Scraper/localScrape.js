@@ -7,6 +7,9 @@ let previousNews;
 
 //localnews scraping
 const localScrape = async () => {
+  try {
+    
+  
     const browser =  await puppetter.launch({
       headless: true,
       'args' : [
@@ -112,9 +115,13 @@ const localScrape = async () => {
     }
 
     //console.log(previousNews)
-    //console.log(localNews);
+    
     await browser.close();
-  
+
+    return localNews
+  } catch (error) {
+    return error
+  }
 }
 
 module.exports = localScrape;

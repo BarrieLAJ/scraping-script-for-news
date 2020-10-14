@@ -17,23 +17,24 @@ mongoose
 
 // scrapering
 const doScraping = async () => {
-   localScrape()
+  await localScrape()
     .then(() => {
       console.log("Scraping local news Was Successful");
+      return 
     })
     .catch((err) => {
       console.log(`Error Scraping local Site ${err}`);
       return err
     });
 
-   interScrape()
-    .then(() => {
-      console.log("Scraping International news Was Successful");
-    })
-    .catch((err) => {
-      console.log(`Error Scraping international Site ${err}`);
-      return err
-    });
+  //  await interScrape()
+  //   .then(() => {
+  //     console.log("Scraping International news Was Successful");
+  //   })
+  //   .catch((err) => {
+  //     console.log(`Error Scraping international Site ${err}`);
+  //     return err
+  //   });
 };
 
 //setting interval for scraping
@@ -59,8 +60,8 @@ const PORT = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 //setting routes
-app.get("/", (req, res) => {
-  doScraping()
+app.get("/", async (req, res) => {
+  await doScraping()
     .then(() => {
       console.log("Scraping Done");
       res.json({ ok: req.header });
