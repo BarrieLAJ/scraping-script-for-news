@@ -73,7 +73,7 @@ const localScrape = async () => {
           console.log(err);
         } else {
           previousNews = JSON.parse(data);
-          console.log(previousNews);
+          // console.log(previousNews);
         }
       });
       for (let news of localNews) {
@@ -125,6 +125,3 @@ const localScrape = async () => {
 }
 
 module.exports = localScrape;
-// localScrape().then(()=>{
-// console.log('Successfully scraped the website')
-// }).catch((err)=>console.log(err));
