@@ -27,14 +27,14 @@ const doScraping = async () => {
       return err
     });
 
-  //  await interScrape()
-  //   .then(() => {
-  //     console.log("Scraping International news Was Successful");
-  //   })
-  //   .catch((err) => {
-  //     console.log(`Error Scraping international Site ${err}`);
-  //     return err
-  //   });
+   await interScrape()
+    .then(() => {
+      console.log("Scraping International news Was Successful");
+    })
+    .catch((err) => {
+      console.log(`Error Scraping international Site ${err}`);
+      return err
+    });
 };
 
 //setting interval for scraping

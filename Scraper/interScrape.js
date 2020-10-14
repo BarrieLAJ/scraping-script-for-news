@@ -31,8 +31,7 @@ const interScrape = async () => {
        
       
           // img
-          let img = new String(el.querySelector("div.lx-stream-related-story a.qa-story-image-link div img").getAttribute("src")
-          )
+          let img =  let img = `${el.querySelector("div.lx-stream-related-story a.qa-story-image-link div img").getAttribute("src")}`
           // .replace("{width}", "240")
       
           // content
@@ -121,7 +120,7 @@ const interScrape = async () => {
     });
 
     await browser.close();
-    
+
     if (fs.existsSync(path.join(__dirname, "interNews.json"))) {
       let newNews = [];
       fs.readFile(path.join(__dirname, "interNews.json"), (err, data) => {
