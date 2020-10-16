@@ -38,6 +38,9 @@ const doScraping = async () => {
     });
 };
 
+
+
+
 //setting interval for scraping
 // setInterval(() => {
 //   doScraping()
