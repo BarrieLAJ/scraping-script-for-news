@@ -6,7 +6,11 @@ const router = express.Router()
 
 router.get('/local', async (req,res,next) => {
     await LocalNews.find().then(news =>{
-        res.send(news)
+        res.send({
+            result: [...news],
+            from: req.baseUrl,
+            result_count: news.length
+        })
     })
     next()
     
@@ -14,7 +18,11 @@ router.get('/local', async (req,res,next) => {
 
 router.get('/international', async (req,res,next) => {
     await InternationalNews.find().then(news =>{
-        res.send(news)
+        res.send({
+            result: [...news],
+            from: req.baseUrl,
+            result_count: news.length
+        })
     })
     next()
 })
