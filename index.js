@@ -70,6 +70,8 @@ app.use(cors(corsOptions))
 //middlewares
 app.use(bodyParser.json());
 
+
+
 //setting routes
 app.get("/", async (req, res) => {
   await doScraping()
