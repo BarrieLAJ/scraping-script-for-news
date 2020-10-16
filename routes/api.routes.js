@@ -18,7 +18,7 @@ router.get('/local', async (req,res,next) => {
 
 router.get('/international', async (req,res,next) => {
     await InternationalNews.find().then(news =>{
-        res.send({
+        res.json({
             result: [...news],
             from: req.baseUrl,
             result_count: news.length
@@ -31,7 +31,7 @@ router.get('/international', async (req,res,next) => {
 router.post('/local', async (req,res,next) => {
     await LocalNews.create(req.body)
     .then((local)=>{
-        res.send(local)
+        res.json(local)
     })
     .catch((err)=>{
         console.log(err)
