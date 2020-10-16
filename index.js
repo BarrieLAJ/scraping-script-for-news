@@ -51,6 +51,8 @@ const doScraping = async () => {
 
 // 1800000
 
+
+
 //routes
 const indexRoute = require("./routes/indexRout.routes");
 const apiRoutes = require("./routes/api.routes");
