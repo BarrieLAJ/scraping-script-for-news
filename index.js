@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const cors = require('cors')
 
 const app = express();
 
@@ -55,6 +56,14 @@ const indexRoute = require("./routes/indexRout.routes");
 const apiRoutes = require("./routes/api.routes");
 
 const PORT = process.env.PORT || 3000;
+
+//cors setup
+const corsOptions = {
+  origin: '*',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+
+app.use(cors(corsOptions))
 
 //middlewares
 app.use(bodyParser.json());
