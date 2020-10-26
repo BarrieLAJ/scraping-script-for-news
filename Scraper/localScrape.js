@@ -7,6 +7,7 @@ const LocalNews = require("../models/localNews");
 
 //localnews scraping
 const localScrape = async () => {
+  try{
     const browser = await puppetter.launch({
       headless: true,
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
@@ -108,11 +109,14 @@ const localScrape = async () => {
     //   );
     // }
 
-    // //console.log(previousNews)
+    console.log(localNews)
 
     await browser.close();
 
     return localNews;
+  } catch (error) {
+    console.log(err)
+  }
 };
 
 module.exports = localScrape;

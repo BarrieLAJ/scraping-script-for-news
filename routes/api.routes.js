@@ -7,15 +7,18 @@ const interScrape = require("../Scraper/interScrape");
 
 const router = express.Router()
 
-router.get('/local', async (req,res,next) => {
-    await localScrape().then(news => {
-        res.json({
-                    result: [...news.data],
+router.get('/local', (req,response) => {
+     localScrape().then(res => res).then(data => {
+        response.json({
+                    result: [...data],
                     from: req.baseUrl,
-                    result_count: news.data.length
+                    result_count: data.length
                 })
     }).catch(err => {
-
+        response.status(500).send({
+            err: err,
+            message: "internal server error"
+        })
     })
 
     // await LocalNews.find().then(news =>{
@@ -25,19 +28,19 @@ router.get('/local', async (req,res,next) => {
     //         result_count: news.length
     //     })
     // })
-    next()
+    //next()
     
 })
 
-router.get('/international', async (req,res,next) => {
-    await interScrape().then(news => {
-        res.json({
-                    result: [...news.data],
+router.get('/international', (req,response) => {
+     interScrape().then(res => res).then(data => {
+        response.json({
+                    result: [...data],
                     from: req.baseUrl,
-                    result_count: news.data.length
+                    result_count: data.length
                 })
     }).catch(err => {
-        res.status(500).send({
+        response.status(500).send({
             err: err,
             message: "internal server error"
         })
@@ -50,7 +53,7 @@ router.get('/international', async (req,res,next) => {
     //         result_count: news.length
     //     })
     // })
-    next()
+    
 })
 
 

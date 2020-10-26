@@ -90,11 +90,14 @@ app.use(bodyParser.json());
 app.use("/api/news", apiRoutes);
 
 //error handling middlewares
-app.use((err, req, res, next) => {
-  // console.log(err)
-  res.status(412).send({ errMsg: err.message });
-  next();
-});
+// app.use((err, req, res, next) => {
+//   // console.log(err)
+//   res.status(500).send({
+//     err: err,
+//     message: "internal server error"
+// })
+//   //next();
+// });
 
 //update database after get request
 // app.use((req,res,next)=>{
