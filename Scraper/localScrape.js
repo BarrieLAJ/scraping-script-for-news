@@ -3,19 +3,13 @@ const path = require("path");
 const fs = require("fs");
 const LocalNews = require("../models/localNews");
 
-let previousNews;
+// let previousNews;
 
 //localnews scraping
 const localScrape = async () => {
-  try {
-    
-  
-    const browser =  await puppetter.launch({
+    const browser = await puppetter.launch({
       headless: true,
-      'args' : [
-        '--no-sandbox',
-        '--disable-setuid-sandbox'
-      ]
+      args: ["--no-sandbox", "--disable-setuid-sandbox"],
     });
     const page = await browser.newPage();
     // const url = 'https://www.thesierraleonetelegraph.com/'
@@ -66,62 +60,59 @@ const localScrape = async () => {
       return news;
     });
 
-    if (fs.existsSync(path.join(__dirname, "localNews.json"))) {
-      let newNews = [];
-      fs.readFile(path.join(__dirname, "localNews.json"), (err, data) => {
-        if (err) {
-          console.log(err);
-        } else {
-          previousNews = JSON.parse(data);
-          // console.log(previousNews);
-        }
-      });
-      for (let news of localNews) {
-        if (!previousNews.some((elem) => elem.link == news.link)) {
-          await LocalNews.create(news)
-            .then((data) => {
-              newNews.push(data);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        }
-      }
-      fs.writeFile(
-        path.join(__dirname, "localNews.json"),
-        JSON.stringify(newNews),
-        (err) => {
-          if (err) console.log(err);
-        }
-      );
-    } else {
-      let newNews = [];
-      for (let news of localNews) {
-        await LocalNews.create(news)
-          .then((data) => {
-            newNews.push(data);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
-      fs.writeFile(
-        path.join(__dirname, "localNews.json"),
-        JSON.stringify(newNews),
-        (err) => {
-          if (err) console.log(err);
-        }
-      );
-    }
+    // if (fs.existsSync(path.join(__dirname, "localNews.json"))) {
+    //   let newNews = [];
+    //   fs.readFile(path.join(__dirname, "localNews.json"), (err, data) => {
+    //     if (err) {
+    //       console.log(err);
+    //     } else {
+    //       previousNews = JSON.parse(data);
+    //       // console.log(previousNews);
+    //     }
+    //   });
+    //   for (let news of localNews) {
+    //     if (!previousNews.some((elem) => elem.link == news.link)) {
+    //       await LocalNews.create(news)
+    //         .then((data) => {
+    //           newNews.push(data);
+    //         })
+    //         .catch((err) => {
+    //           console.log(err);
+    //         });
+    //     }
+    //   }
+    //   fs.writeFile(
+    //     path.join(__dirname, "localNews.json"),
+    //     JSON.stringify(newNews),
+    //     (err) => {
+    //       if (err) console.log(err);
+    //     }
+    //   );
+    // } else {
+    //   let newNews = [];
+    //   for (let news of localNews) {
+    //     await LocalNews.create(news)
+    //       .then((data) => {
+    //         newNews.push(data);
+    //       })
+    //       .catch((err) => {
+    //         console.log(err);
+    //       });
+    //   }
+    //   fs.writeFile(
+    //     path.join(__dirname, "localNews.json"),
+    //     JSON.stringify(newNews),
+    //     (err) => {
+    //       if (err) console.log(err);
+    //     }
+    //   );
+    // }
 
-    //console.log(previousNews)
-    
+    // //console.log(previousNews)
+
     await browser.close();
 
-    return localNews
-  } catch (error) {
-    return error
-  }
-}
+    return localNews;
+};
 
 module.exports = localScrape;

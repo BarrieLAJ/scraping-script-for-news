@@ -1,14 +1,15 @@
 const puppetter = require("puppeteer");
 const InternationalNews = require("../models/internationalNews");
-const fs = require("fs");
-const path = require("path");
+
+//const fs = require("fs");
+//const path = require("path");
 
 // news api key = "6b049b3c0ee24797b9e2b5ab9d4bda32"
 // BBC news api
 // main_url = "http://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey="
 
 const interScrape = async () => {
-  try {
+
     const browser = await puppetter.launch({
       headless: true,
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
@@ -63,55 +64,54 @@ const interScrape = async () => {
 
     await browser.close();
 
-    if (fs.existsSync(path.join(__dirname, "interNews.json"))) {
-      let newNews = [];
-      fs.readFile(path.join(__dirname, "interNews.json"), (err, data) => {
-        if (err) {
-          console.log(err);
-        } else {
-          previousNews = JSON.parse(data);
-        }
-      });
-      for (let news of interNews) {
-        if (checkNews(previousNews, news)) {
-          await InternationalNews.create(news)
-            .then((data) => {
-              newNews.push(data);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        }
-      }
-      fs.writeFile(
-        path.join(__dirname, "interNews.json"),
-        JSON.stringify(newNews),
-        (err) => {
-          if (err) console.log(err);
-        }
-      );
-    } else {
-      let newNews = [];
-      for (let news of interNews) {
-        await InternationalNews.create(news)
-          .then((data) => {
-            newNews.push(data);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
-      fs.writeFile(
-        path.join(__dirname, "interNews.json"),
-        JSON.stringify(newNews),
-        (err) => {
-          if (err) console.log(err);
-        }
-      );
-    }
+    // if (fs.existsSync(path.join(__dirname, "interNews.json"))) {
+    //   let newNews = [];
+    //   fs.readFile(path.join(__dirname, "interNews.json"), (err, data) => {
+    //     if (err) {
+    //       console.log(err);
+    //     } else {
+    //       previousNews = JSON.parse(data);
+    //     }
+    //   });
+    //   for (let news of interNews) {
+    //     if (checkNews(previousNews, news)) {
+    //       await InternationalNews.create(news)
+    //         .then((data) => {
+    //           newNews.push(data);
+    //         })
+    //         .catch((err) => {
+    //           console.log(err);
+    //         });
+    //     }
+    //   }
+    //   fs.writeFile(
+    //     path.join(__dirname, "interNews.json"),
+    //     JSON.stringify(newNews),
+    //     (err) => {
+    //       if (err) console.log(err);
+    //     }
+    //   );
+    // } else {
+    //   let newNews = [];
+    //   for (let news of interNews) {
+    //     await InternationalNews.create(news)
+    //       .then((data) => {
+    //         newNews.push(data);
+    //       })
+    //       .catch((err) => {
+    //         console.log(err);
+    //       });
+    //   }
+    //   fs.writeFile(
+    //     path.join(__dirname, "interNews.json"),
+    //     JSON.stringify(newNews),
+    //     (err) => {
+    //       if (err) console.log(err);
+    //     }
+    //   );
+    // }
 
     return interNews;
-  } catch (error) {}
 };
 
 

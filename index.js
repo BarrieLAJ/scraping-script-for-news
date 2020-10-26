@@ -5,8 +5,8 @@ const cors = require('cors')
 
 const app = express();
 
-const localScrape = require("./Scraper/localScrape");
-const interScrape = require("./Scraper/interScrape");
+// const localScrape = require("./Scraper/localScrape");
+// const interScrape = require("./Scraper/interScrape");
 
 //connect to mongoDB
 mongoose
@@ -17,26 +17,26 @@ mongoose
   .then((res) => console.log("DB Connected successfully"));
 
 // scrapering
-const doScraping = async () => {
-  await localScrape()
-    .then(() => {
-      console.log("Scraping local news Was Successful");
-      return 
-    })
-    .catch((err) => {
-      console.log(`Error Scraping local Site ${err}`);
-      return err
-    });
+// const doScraping = async () => {
+//   await localScrape()
+//     .then(() => {
+//       console.log("Scraping local news Was Successful");
+//       return 
+//     })
+//     .catch((err) => {
+//       console.log(`Error Scraping local Site ${err}`);
+//       return err
+//     });
 
-   await interScrape()
-    .then(() => {
-      console.log("Scraping International news Was Successful");
-    })
-    .catch((err) => {
-      console.log(`Error Scraping international Site ${err}`);
-      return err
-    });
-};
+//    await interScrape()
+//     .then(() => {
+//       console.log("Scraping International news Was Successful");
+//     })
+//     .catch((err) => {
+//       console.log(`Error Scraping international Site ${err}`);
+//       return err
+//     });
+// };
 
 
 
@@ -57,7 +57,7 @@ const doScraping = async () => {
 
 
 //routes
-const indexRoute = require("./routes/indexRout.routes");
+//const indexRoute = require("./routes/indexRout.routes");
 const apiRoutes = require("./routes/api.routes");
 
 const PORT = process.env.PORT || 3000;
@@ -76,17 +76,17 @@ app.use(bodyParser.json());
 
 
 //setting routes
-app.get("/", async (req, res) => {
-  await doScraping()
-    .then(() => {
-      console.log("Scraping Done");
-      res.json({ ok: req.header });
-    })
-    .catch((err) => {
-      console.log(`There was an error ${err}`);
-      res.json({ err: err });
-    });
-});
+// app.get("/", async (req, res) => {
+//   await doScraping()
+//     .then(() => {
+//       console.log("Scraping Done");
+//       res.json({ ok: req.header });
+//     })
+//     .catch((err) => {
+//       console.log(`There was an error ${err}`);
+//       res.json({ err: err });
+//     });
+// });
 app.use("/api/news", apiRoutes);
 
 //error handling middlewares
@@ -126,5 +126,5 @@ app.listen(PORT, () => {
   console.log("Innitializing.....");
   console.log("Starting the server....");
   console.log("Server started..");
-  console.log("Server Listening on port 4000");
+  console.log(`Server Listening on port ${PORT}`);
 });
